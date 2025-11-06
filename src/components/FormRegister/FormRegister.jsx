@@ -1,19 +1,16 @@
 import { useState } from 'react'
 import styles from './FormRegister.module.css'
+import { useNavigate } from 'react-router-dom'
 
 const FormRegister = ({ setUser }) => {
+    const navigate = useNavigate()
+
     const [username, setUsername] = useState('')
     const [age, setAge] = useState('')
     const [email, setEmail] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
-        // const newUser = {
-        //     name: username,
-        //     age: age,
-        //     email: email
-        // }
 
         setUser({
             name: username,
@@ -24,6 +21,14 @@ const FormRegister = ({ setUser }) => {
         setUsername('')
         setAge('')
         setEmail('')
+
+        navigate('/profilelist',{
+            state: {
+                name: username,
+                age: age,
+                email: email
+            }
+        })
     }
 
     return (
